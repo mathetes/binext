@@ -1,7 +1,26 @@
-import Main from './main.js';
+import React from 'react'
+import {connect} from 'react-redux'
+import Products from '../components/products'
+import Head from 'next/head'
 
-const Index = () => (
-    <Main />
-);
+class Index extends React.Component {
+  render () {
+    return (
+      <div>
+        <Head>
+          <link href="/static/main.css" rel="stylesheet" />
+          <meta name="title" content="Peaky Blinder's e-commerce" />
+          <meta name="description" content='Find the best Peaky Blinders products online.'  />
+        </Head>
 
-export default Index;
+        <Products {...this.props}/>
+
+      </div>
+    )
+  }
+}
+
+const mapStateToProps = (state) => 
+    ({products: state.products})
+
+export default connect(mapStateToProps)(Index)
